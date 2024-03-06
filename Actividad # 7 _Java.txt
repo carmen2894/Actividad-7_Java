@@ -1,0 +1,70 @@
+import java.util.Arrays;
+
+public class Calculadora {
+    private int numero;
+
+    public Calculadora(int numero) {
+        this.numero = numero;
+    }
+
+
+    public int[] calcularNumPrimos() {
+        int[] primos = new int[numero];
+        int count = 0;
+        int num = 2;
+
+        while (count < numero) {
+            boolean esNumPrimo = true;
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    esNumPrimo = false;
+                    break;
+                }
+            }
+            if (esNumPrimo) {
+                primos[count] = num;
+                count++;
+            }
+            num++;
+        }
+        return primos;
+    }
+
+
+    public int[] calcularNumFibonacci() {
+        int[] fibonacci = new int[numero];
+        fibonacci[0] = 0;
+        if (numero > 1) {
+            fibonacci[1] = 1;
+            for (int i = 2; i < numero; i++) {
+                fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+            }
+        }
+        return fibonacci;
+    }
+
+    public static void main(String[] args) {
+        int n = 30;
+        Calculadora calcular = new Calculadora(n);
+
+
+        int[] numprimos = calcular.calcularNumPrimos();
+        System.out.println("Números primos:");
+        for (int i = 0; i < numprimos.length; i++) {
+            if (i < numprimos.length - 1)
+                System.out.print(numprimos[i] + ", ");
+            else
+                System.out.println(numprimos[i]);
+        }
+
+
+        int[] numfibonacci = calcular.calcularNumFibonacci();
+        System.out.println("\nSucesión de numeros fibonacci:");
+        for (int i = 0; i < numfibonacci.length; i++) {
+            if (i < numfibonacci.length - 1)
+                System.out.print(numfibonacci[i] + ", ");
+            else
+                System.out.println(numfibonacci[i]);
+        }
+    }
+}
